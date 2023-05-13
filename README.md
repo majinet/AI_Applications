@@ -4,3 +4,4 @@ This project repository serves as a platform to invent innovative concepts and a
 ## Projects
 
 - [Transcript audio to text and summarize transcript using OpenAI Whisper and ChatGPT](https://github.com/majinet/AI_Applications/tree/main/audio-to-text)
+- [Create video stills using AI (Midjourney, ChatGPT, Amazon Polly)](https://github.com/majinet/AI_Applications/tree/main/still_video)

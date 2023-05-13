@@ -1,4 +1,4 @@
-# Create still video using AI
+# Create video stills using AI
 
 This project is to create a still video using AI;
 - Midjourney: AI image generator

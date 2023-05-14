@@ -1,0 +1,215 @@
+Write cucumber BDD with best practice from function requirements
+
+---
+ calculator to calculate numbers
+- function: add 2 numbers and return one number
+- function: subtract 2 numbers and return one number
+- function: multiple 2 numbers and return one number
+- function: divide 2 numbers and return one number
+---
+
+Result:
+
+Feature: Calculator operations
+
+Scenario: Add two numbers
+Given I have a calculator
+When I enter the numbers "5" and "7" to add
+Then the result should be "12" on the calculator
+
+Scenario: Subtract two numbers
+Given I have a calculator
+When I enter the numbers "10" and "4" to subtract
+Then the result should be "6" on the calculator
+
+Scenario: Multiply two numbers
+Given I have a calculator
+When I enter the numbers "3" and "6" to multiply
+Then the result should be "18" on the calculator
+
+Scenario: Divide two numbers
+Given I have a calculator
+When I enter the numbers "20" and "5" to divide
+Then the result should be "4" on the calculator
+
+Scenario: Divide by zero
+Given I have a calculator
+When I enter the numbers "10" and "0" to divide
+Then the calculator should return an error "Cannot divide by zero!"
+
+
+Create python file only follow best practice, PEP 8 and docstring
+"""
+example;
+import ...
+Class ...
+def ...
+"""
+
+---
+Feature: Calculator operations
+
+Scenario: Add two numbers
+Given I have a calculator
+When I enter the numbers "5" and "7" to add
+Then the result should be "12" on the calculator
+
+Scenario: Subtract two numbers
+Given I have a calculator
+When I enter the numbers "10" and "4" to subtract
+Then the result should be "6" on the calculator
+
+Scenario: Multiply two numbers
+Given I have a calculator
+When I enter the numbers "3" and "6" to multiply
+Then the result should be "18" on the calculator
+
+Scenario: Divide two numbers
+Given I have a calculator
+When I enter the numbers "20" and "5" to divide
+Then the result should be "4" on the calculator
+
+Scenario: Divide by zero
+Given I have a calculator
+When I enter the numbers "10" and "0" to divide
+Then the calculator should return an error "Cannot divide by zero!"
+---
+
+Results:
+
+"""
+Module: calculator.py
+
+This module defines a simple calculator class that supports basic mathematical operations.
+
+Example Usage:
+  calculator = Calculator()
+  result = calculator.add(5, 7)
+  print(result) # Output: 12
+
+"""
+
+class Calculator:
+    """
+    A simple calculator class that supports basic mathematical operations.
+    """
+
+    def add(self, a: float, b: float) -> float:
+        """
+        Adds two numbers.
+
+        Args:
+            a (float): The first number to add.
+            b (float): The second number to add.
+
+        Returns:
+            float: The sum of the two numbers.
+        """
+        return a + b
+
+    def subtract(self, a: float, b: float) -> float:
+        """
+        Subtracts two numbers.
+
+        Args:
+            a (float): The number to subtract from.
+            b (float): The number to subtract.
+
+        Returns:
+            float: The result of the subtraction.
+        """
+        return a - b
+
+    def multiply(self, a: float, b: float) -> float:
+        """
+        Multiplies two numbers.
+
+        Args:
+            a (float): The first number to multiply.
+            b (float): The second number to multiply.
+
+        Returns:
+            float: The product of the two numbers.
+        """
+        return a * b
+
+    def divide(self, a: float, b: float) -> float:
+        """
+        Divides two numbers.
+
+        Args:
+            a (float): The number to divide.
+            b (float): The divisor.
+
+        Returns:
+            float: The result of the division.
+        Raises:
+            ZeroDivisionError: If the divisor is zero.
+        """
+        if b == 0:
+            raise ZeroDivisionError("Cannot divide by zero!")
+        return a / b
+
+
+Create python step definition using Behave
+---
+Feature: Calculator operations
+
+Scenario: Add two numbers
+Given I have a calculator
+When I enter the numbers "5" and "7" to add
+Then the result should be "12" on the calculator
+
+Scenario: Subtract two numbers
+Given I have a calculator
+When I enter the numbers "10" and "4" to subtract
+Then the result should be "6" on the calculator
+
+Scenario: Multiply two numbers
+Given I have a calculator
+When I enter the numbers "3" and "6" to multiply
+Then the result should be "18" on the calculator
+
+Scenario: Divide two numbers
+Given I have a calculator
+When I enter the numbers "20" and "5" to divide
+Then the result should be "4" on the calculator
+
+Scenario: Divide by zero
+Given I have a calculator
+When I enter the numbers "10" and "0" to divide
+Then the calculator should return an error "Cannot divide by zero!"
+---
+
+Results:
+
+from behave import given, when, then
+from calculator import Calculator
+
+@given('I have a calculator')
+def step_impl(context):
+    context.calc = Calculator()
+
+@when('I enter the numbers "{num1:d}" and "{num2:d}" to add')
+def step_impl(context, num1, num2):
+    context.result = context.calc.add(num1, num2)
+
+@when('I enter the numbers "{num1:d}" and "{num2:d}" to subtract')
+def step_impl(context, num1, num2):
+    context.result = context.calc.subtract(num1, num2)
+
+@when('I enter the numbers "{num1:d}" and "{num2:d}" to multiply')
+def step_impl(context, num1, num2):
+    context.result = context.calc.multiply(num1, num2)
+
+@when('I enter the numbers "{num1:d}" and "{num2:d}" to divide')
+def step_impl(context, num1, num2):
+    context.result = context.calc.divide(num1, num2)
+
+@then('the result should be "{expected:d}" on the calculator')
+def step_impl(context, expected):
+    assert context.result == expected
+
+@then('the calculator should return an error "{error_msg}"')
+def step_impl(context, error_msg):
+    assert context.error_msg == error_msg

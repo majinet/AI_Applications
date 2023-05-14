@@ -1,0 +1,13 @@
+Write a description to showcase 'test automation with AI' and translate to markdown syntax.
+
+--- Here is example of document structure
+The goals of project
+Test Automation Technology Implementation
+---
+
+Here are key detail to fill in for document structure.
+AI using OpenAI ChatGPT
+This is BDD
+We use Python
+use Behave to Gherkin syntax
+use unittest to implement steps

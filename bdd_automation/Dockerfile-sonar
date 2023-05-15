@@ -1,6 +1,5 @@
+#FROM python:3.9-slim-buster
 FROM sonarsource/sonar-scanner-cli:latest
-FROM python:3.9-slim-buster
-#FROM python:3.9-alpine
 
 WORKDIR bdd_automation
 

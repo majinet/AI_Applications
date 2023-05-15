@@ -20,11 +20,12 @@ spec:
         image: majinetudacitylearn/sonar-scan-bdd-automation:v0.0.1
         command:
           - "sonar-scanner"
+          - "-X"
           - "-Dsonar.projectKey=AI_Applications"
-          - "-Dsonar.sources=/app/bdd_automation"
+          - "-Dsonar.sources=/usr/src/bdd_automation"
           - "-Dsonar.host.url=http://10.64.140.43:9000"
           - "-Dsonar.token=$(SONAR_TOKEN)"
-          - "-Dsonar.python.coverage.reportPaths=/app/bdd_automation/coverage.xml"
+          - "-Dsonar.python.coverage.reportPaths=/usr/src/bdd_automation/coverage.xml"
         env:
         - name: SONAR_TOKEN
           valueFrom:

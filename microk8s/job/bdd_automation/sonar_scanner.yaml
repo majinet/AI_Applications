@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sonar-scanner
+spec:
+  parallelism: 1
+  ttlSecondsAfterFinished: 300
+  template:
+    metadata:
+      labels:
+        app: sonar-scanner
+    spec:
+      volumes:
+      - name: pvc-sonar-app
+        persistentVolumeClaim:
+          claimName: pvc-sonar-app
+      containers:
+      - name: sonar-scanner
+        image: majinetudacitylearn/sonar-scan-bdd-automation:v0.0.1
+        command:
+          - "sonar-scanner"
+          - "-Dsonar.projectKey=AI_Applications"
+          - "-Dsonar.sources=/app/bdd_automation"
+          - "-Dsonar.host.url=http://10.64.140.43:9000"
+          - "-Dsonar.token=$(SONAR_TOKEN)"
+          - "-Dsonar.python.coverage.reportPaths=/app/bdd_automation/coverage.xml"
+        env:
+        - name: SONAR_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: sonar-secret
+              key: SONAR_TOKEN
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: pvc-sonar-app
+          mountPath: /app
+      restartPolicy: Never
+  backoffLimit: 0

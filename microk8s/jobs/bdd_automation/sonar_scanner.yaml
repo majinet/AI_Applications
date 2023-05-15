@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: sonar-scanner
+  namespace: sonarqube
 spec:
   parallelism: 1
   ttlSecondsAfterFinished: 300

@@ -15,4 +15,10 @@ In Midjourney,
 
 ![sample.png](image/sample.png)
 
-Other images can be found in image folder
+Other sample images:
+
+![anime_girl_ice_cream4.png](image/anime_girl_ice_cream4.png)
+
+![realistic_oil_painting_girl_shopping.png](image/realistic_oil_painting_girl_shopping.png)
+
+![interior_design_western_living_room.png](image/interior_design_western_living_room.png)
